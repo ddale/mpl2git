@@ -16,9 +16,8 @@ help:
 all: clean export postprocess final-cleanup gc
 
 clean:
-	rm -rf numpy numpy.save f2py-research vendor log-* \
-	    revisions-numpy revisions-f2py-research \
-	    revisions-vendor verify-numpy.git
+	rm -rf matplotlib matplotlib.save vendor log-* revisions-matplotlib \
+	    revisions-vendor verify-matplotlib.git
 
 svn2git:
 	git clone git://gitorious.org/svn2git/svn2git.git svn2git
@@ -31,45 +30,45 @@ svn2git/svn-all-fast-export: svn2git
 export: svn2git/svn-all-fast-export
 	./svn2git/svn-all-fast-export \
 	  --identity-map authors.map \
-	  --rules numpy.rules \
+	  --rules matplotlib.rules \
 	  --add-metadata \
 	  --commit-interval 500 \
 	  $(SVN) \
-	2>&1 | tee log-numpy-export
-	rm -rf numpy.save
-	cp -a numpy numpy.save
+	2>&1 | tee log-matplotlib-export
+	rm -rf matplotlib.save
+	cp -a matplotlib matplotlib.save
 
-verify-numpy.git:
-	./tree-checksum.py --all-git numpy.save | tee $@
+verify-matplotlib.git:
+	./tree-checksum.py --all-git matplotlib.save | tee $@
 
-verify-numpy.svn:
+verify-matplotlib.svn:
 	./tree-checksum.py --all-svn $(SVN) | tee $@
 
-verify: verify-numpy.git verify-numpy.svn
-	./tree-checksum.py --compare verify-numpy.svn verify-numpy.git
+verify: verify-matplotlib.git verify-matplotlib.svn
+	./tree-checksum.py --compare verify-matplotlib.svn verify-matplotlib.git
 
 graft:
-	./postprocess.sh numpy numpy.grafts graft-only
-	./branchstat.sh numpy numpy.branchskip
+	./postprocess.sh matplotlib matplotlib.grafts graft-only
+	./branchstat.sh matplotlib matplotlib.branchskip
 
 branchstat:
-	./branchstat.sh numpy numpy.branchskip
+	./branchstat.sh matplotlib matplotlib.branchskip
 
 postprocess:
-	./postprocess.sh numpy numpy.grafts
+	./postprocess.sh matplotlib matplotlib.grafts
 
 final-cleanup:
-	install -d numpy/refs/svn/backups
-	find numpy/refs/backups -type f \
+	install -d matplotlib/refs/svn/backups
+	find matplotlib/refs/backups -type f \
 	| while read F; do \
 		NEWF=`echo "$$F"|sed -e 's@.*/r\([0-9]\+\)/.*/\([^/]\+\)$$@\2_\1@'`; \
-		mv "$$F" numpy/refs/svn/backups/"$$NEWF"; \
+		mv "$$F" matplotlib/refs/svn/backups/"$$NEWF"; \
 	done
-	rm -rf numpy/refs/original
-	rm -rf numpy/refs/backups
+	rm -rf matplotlib/refs/original
+	rm -rf matplotlib/refs/backups
 
 gc:
-	for repo in numpy vendor f2py-research; do \
+	for repo in matplotlib  ; do \
 	    (cd $$repo && \
 	     git repack -f -a -d --depth=500 --window=250 && \
 	     git gc --prune=0); \

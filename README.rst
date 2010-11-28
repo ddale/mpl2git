@@ -1,13 +1,17 @@
-Numpy SVN to Git conversion
-===========================
+Matplotlib SVN to Git conversion
+================================
 
-We do Numpy SVN -> GIT conversion as listed below.
+These utilities are modified versions of those developed by Pauli
+Virtanen for converting the numpy svn repository to git. Thank you
+Pauli.
+
+We do matplotlib SVN -> GIT conversion as listed below.
 
 All of this is driven by a Makefile, whose targets we list below.
 Quick usage:
 
-    svnsync http://...  numpy-svn
-    make all SVN=numpy-svn
+    svnsync http://...  matplotlib-svn
+    make all SVN=matplotlib-svn
 
 You also need an ``authors.map`` in the format
 
@@ -100,7 +104,7 @@ graft (diagnostic)
 When playing around with grafting, it's useful to just run
 ``make clean export`` first, and then do
 
-- edit ``numpy.grafts``
+- edit ``matplotlib.grafts``
 - run ``make graft``
 
 until the result is satisfactory.
@@ -111,4 +115,4 @@ branchstat (diagnostic)
 The ``branchstat.sh`` script checks all remaining branches,
 and reports those with dangling unmerged commits.
 
-It ignores the branches listed in ``numpy.branchskip``
+It ignores the branches listed in ``matplotlib.branchskip``
