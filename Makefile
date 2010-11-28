@@ -1,4 +1,4 @@
-SVN=$(CURDIR)/../numpy-svn
+SVN=$(CURDIR)/../mpl-svn
 
 help:
 	@echo "Targets:"
