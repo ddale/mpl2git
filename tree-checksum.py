@@ -242,7 +242,10 @@ def path_checksum(path, skip=None):
             if os.path.isfile(svnpath):
                 feed_file(svnpath)
             else:
-                feed_file(fullpath)
+                try:
+                    feed_file(fullpath)
+                except IOError:
+                    print('missing file %s' % fullpath)
 
     return digest.hexdigest()
 

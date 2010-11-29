@@ -13,41 +13,58 @@ match /trunk/matplotlib/
     branch master
 end match
 
+# Identify other roots; but remove them only in post-processing
+
+match /trunk/([^/]+)/
+  repository matplotlib
+  branch crud/repos/\1
+end match
+
+# or just skip them to begin with
+
+#match /trunk/([^/]+)/
+#end match
+
 
 # Branches
 # --------
 
 # Release branches
 
-#match /branches/(1.0.3.x)/
-#    repository numpy
-#    branch maintenance/\1
-#end match
+match /branches/(v0_91_maint)/
+    repository matplotlib
+    branch maintenance/v0.91.x
+end match
 
-#match /branches/(1.1.x)/
-#    repository numpy
-#    branch maintenance/\1
-#end match
+match /branches/(v0_98_5_maint)/
+    repository matplotlib
+    branch maintenance/v0.98.5.x
+end match
 
-#match /branches/(1.2.x)/
-#    repository numpy
-#    branch maintenance/\1
-#end match
+match /branches/(v0_99_maint)/
+    repository matplotlib
+    branch maintenance/v0.99.x
+end match
 
-#match /branches/(1.3.x)/
-#    repository numpy
-#    branch maintenance/\1
-#end match
+match /branches/(v1_0_maint)/
+    repository matplotlib
+    branch maintenance/v1.0.x
+end match
 
-#match /branches/(1.4.x)/
-#    repository numpy
-#    branch maintenance/\1
-#end match
+match /branches/(transforms)/
+    repository matplotlib
+    branch transforms
+end match
 
-#match /branches/(1.5.x)/
-#    repository numpy
-#    branch maintenance/\1
-#end match
+match /branches/(unit_support)/
+    repository matplotlib
+    branch unit_support
+end match
+
+match /branches/(py3k)/
+    repository matplotlib
+    branch py3k
+end match
 
 #match /branches/v0_3_2/
 #  repository numpy
@@ -114,6 +131,6 @@ end match
 # Rest of the tags are crud; but again remove them only in post-processing
 
 match /tags/([^/]+)/
-  repository numpy
+  repository matplotlib
   branch crud/svntags/\1
 end match

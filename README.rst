@@ -10,8 +10,8 @@ We do matplotlib SVN -> GIT conversion as listed below.
 All of this is driven by a Makefile, whose targets we list below.
 Quick usage:
 
-    svnsync http://...  matplotlib-svn
-    make all SVN=matplotlib-svn
+    svnsync sync file://`pwd`/mpl-svn
+    make all SVN=mpl-svn
 
 You also need an ``authors.map`` in the format
 

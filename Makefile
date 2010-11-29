@@ -16,14 +16,14 @@ help:
 all: clean export postprocess final-cleanup gc
 
 clean:
-	rm -rf matplotlib matplotlib.save vendor log-* revisions-matplotlib \
-	    revisions-vendor verify-matplotlib.git
+	rm -rf matplotlib matplotlib.save log-* revisions-matplotlib \
+	    verify-matplotlib.git
 
 svn2git:
 	git clone git://gitorious.org/svn2git/svn2git.git svn2git
 
 svn2git/svn-all-fast-export: svn2git
-	cd svn2git && git checkout -f e1bebdeb4 && git clean -f -x
+	cd svn2git && git checkout master && git clean -f -x
 	cd svn2git && qmake
 	make -C svn2git
 
