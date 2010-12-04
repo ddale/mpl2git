@@ -1,4 +1,5 @@
 SVN=$(CURDIR)/../mpl-svn
+#SVN=https://matplotlib.svn.sourceforge.net/svnroot/matplotlib/trunk/matplotlib
 
 help:
 	@echo "Targets:"

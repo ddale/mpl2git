@@ -100,7 +100,10 @@ def _read_listing(filename):
             parts = line.strip().split()
             if len(parts) != 3:
                 raise ValueError("Invalid line '%s'" % line)
-            listing[(int(parts[0]), parts[1])] = parts[2]
+            try:
+                listing[(int(parts[0]), parts[1])] = parts[2]
+            except ValueError:
+                listing[(parts[0], parts[1])] = parts[2]
     finally:
         f.close()
     return listing
@@ -152,7 +155,6 @@ def do_svn(path, workdir, start_rev=None, end_rev=None, skip=None):
         else:
             os.chdir(checkoutdir)
             svn('switch', '--force', '--ignore-externals', '-q', commiturl)
-
         checksum = path_checksum(checkoutdir, skip=skip)
         print commit, branch, checksum
         sys.stdout.flush()
@@ -217,6 +219,13 @@ def path_checksum(path, skip=None):
         digest.update(s)
 
     for dirpath, dirnames, filenames in os.walk(path, topdown=True):
+        if 'py4science' in dirnames:
+            for i in ('CVSROOT', 'course', 'htdocs', 'py4science',
+                      'sample_data', 'sampledoc_tut', 'scipy06', 'toolkits',
+                      'users_guide', '.svn'):
+                dirnames.remove(i)
+            #print dirnames
+            continue
         dirnames.sort()
         for name in ('.svn', '.git'):
             try:
@@ -245,7 +254,7 @@ def path_checksum(path, skip=None):
                 try:
                     feed_file(fullpath)
                 except IOError:
-                    print('missing file %s' % fullpath)
+                    pass
 
     return digest.hexdigest()
 
