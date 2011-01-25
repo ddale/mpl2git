@@ -1,4 +1,4 @@
-SVN=$(CURDIR)/../mpl-svn
+SVN=$(CURDIR)/mpl-svn
 #SVN=https://matplotlib.svn.sourceforge.net/svnroot/matplotlib/trunk/matplotlib
 
 help:
@@ -18,7 +18,7 @@ all: clean export postprocess final-cleanup gc
 
 clean:
 	rm -rf matplotlib matplotlib.save log-* revisions-matplotlib \
-	    verify-matplotlib.git
+	    verify-matplotlib.git crud sample-data sampledoc toolkits
 
 svn2git:
 	git clone git://gitorious.org/svn2git/svn2git.git svn2git

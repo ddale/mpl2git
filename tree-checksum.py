@@ -125,10 +125,16 @@ def do_git(path, workdir, start_rev=None, end_rev=None, skip=None):
         if end_rev is not None and int(m.group(2)) <= end_rev:
             break
 
+        b = m.group(1)
+        if b.startswith('trunk'):
+            if 'matplotlib' not in b:
+                continue
+            else:
+                b = 'trunk'
         git('checkout', '--quiet', commit)
 
         checksum = path_checksum(repo, skip=skip)
-        print m.group(2), m.group(1), checksum
+        print m.group(2), b, checksum
         sys.stdout.flush()
 
 @_with_workdir
@@ -219,11 +225,14 @@ def path_checksum(path, skip=None):
         digest.update(s)
 
     for dirpath, dirnames, filenames in os.walk(path, topdown=True):
-        if 'py4science' in dirnames:
+        if 'CVSROOT' in dirnames:
             for i in ('CVSROOT', 'course', 'htdocs', 'py4science',
                       'sample_data', 'sampledoc_tut', 'scipy06', 'toolkits',
                       'users_guide', '.svn'):
-                dirnames.remove(i)
+                try:
+                    dirnames.remove(i)
+                except:
+                    pass
             #print dirnames
             continue
         dirnames.sort()

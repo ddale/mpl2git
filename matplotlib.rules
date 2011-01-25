@@ -4,6 +4,29 @@
 create repository matplotlib
 end repository
 
+create repository sample_data
+end repository
+
+create repository sampledoc
+end repository
+
+create repository py4science
+end repository
+
+create repository basemap
+end repository
+
+create repository mplsizer
+end repository
+
+create repository natgrid
+end repository
+
+create repository maintenance
+end repository
+
+create repository crud
+end repository
 
 # Trunks
 # ------
@@ -13,11 +36,41 @@ match /trunk/matplotlib/
     branch master
 end match
 
+match /trunk/sample_data/
+    repository sample_data
+    branch master
+end match
+
+match /trunk/sampledoc_tut/
+    repository sampledoc
+    branch master
+end match
+
+match /trunk/py4science/
+    repository py4science
+    branch master
+end match
+
+match /trunk/toolkits/basemap/
+    repository basemap
+    branch master
+end match
+
+match /trunk/toolkits/mplsizer/
+    repository mplsizer
+    branch master
+end match
+
+match /trunk/toolkits/natgrid/
+    repository natgrid
+    branch master
+end match
+        
 # Identify other roots; but remove them only in post-processing
 
 match /trunk/([^/]+)/
-  repository matplotlib
-  branch crud/repos/\1
+  repository crud
+  branch \1
 end match
 
 # or just skip them to begin with
@@ -31,24 +84,29 @@ end match
 
 # Release branches
 
+#match /(branches|tags)/(v[^/]+)/
+#    repository matplotlib
+#    branch svntags/\2
+#end match
+
 match /branches/(v0_91_maint)/
     repository matplotlib
-    branch maintenance/v0.91.x
+    branch v0.91.x
 end match
 
 match /branches/(v0_98_5_maint)/
     repository matplotlib
-    branch maintenance/v0.98.5.x
+    branch v0.98.5.x
 end match
 
 match /branches/(v0_99_maint)/
     repository matplotlib
-    branch maintenance/v0.99.x
+    branch v0.99.x
 end match
 
 match /branches/(v1_0_maint)/
     repository matplotlib
-    branch maintenance/v1.0.x
+    branch v1.0.x
 end match
 
 match /branches/(transforms)/
@@ -56,20 +114,15 @@ match /branches/(transforms)/
     branch transforms
 end match
 
-match /branches/(unit_support)/
-    repository matplotlib
-    branch unit_support
-end match
+#match /branches/(unit_support)/
+#    repository matplotlib
+#    branch unit_support
+#end match
 
 match /branches/(py3k)/
     repository matplotlib
     branch py3k
 end match
-
-#match /branches/v0_3_2/
-#  repository numpy
-#  branch svntags/0.3.2
-#end match
 
 
 # The rest of the branches.
@@ -78,8 +131,8 @@ end match
 # for preserving the history relevant for trunk
 
 match /branches/([^/]+)/
-    repository matplotlib
-    branch crud/\1
+    repository crud
+    branch \1
 end match
 
 
@@ -117,20 +170,9 @@ match /tags/(v[^/]+)/
   branch svntags/\1
 end match
 
-#match /tags/beta-0.4.2/
-#  repository numpy
-#  branch svntags/0.4.2b1
-#end match
-
-#match /tags/release_0_2_0/
-#  repository numpy
-#  branch svntags/0.2.0
-#end match
-
-
 # Rest of the tags are crud; but again remove them only in post-processing
 
 match /tags/([^/]+)/
-  repository matplotlib
-  branch crud/svntags/\1
+  repository crud
+  branch svntags/\1
 end match
