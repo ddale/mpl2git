@@ -29,7 +29,7 @@ GRAFTS="`pwd`/`basename "$GRAFTS"`"
 popd > /dev/null
 
 cd "$REPO"
-date -R > "$LOG"
+date > "$LOG"
 
 run() {
     echo "\$" "$@"
@@ -121,7 +121,7 @@ fi
 #
 # 4) Collect garbage
 #
-MAX_REVISION=`git log --all | sed -n -e '/^    svn path/{s/.*revision=//;p}'|sort -n|tail -n1`
+MAX_REVISION=`git log --all | sed -n -e '/^    svn path/{s/.*revision=//;p;}'|sort -n|tail -n1`
 
 run git reflog expire --expire=0 --all
 run git prune

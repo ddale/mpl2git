@@ -36,6 +36,11 @@ match /trunk/matplotlib/
     branch master
 end match
 
+match /branches/jdhunter/
+    repository matplotlib
+    branch jdhunter
+end match
+
 match /trunk/sample_data/
     repository sample_data
     branch master
@@ -54,6 +59,16 @@ end match
 match /trunk/toolkits/basemap/
     repository basemap
     branch master
+end match
+
+match /trunk/toolkits/basemap-testing/
+    repository basemap
+    branch testing
+end match
+
+match /trunk/toolkits/basemap-0.9.6.1/
+    repository basemap
+    branch 0.9.6.1
 end match
 
 match /trunk/toolkits/mplsizer/
@@ -114,16 +129,25 @@ match /branches/(transforms)/
     branch transforms
 end match
 
-#match /branches/(unit_support)/
+#match /branches/(jdhunter)/
 #    repository matplotlib
-#    branch unit_support
+#    branch jdhunter
 #end match
+
+match /branches/(unit_support)/
+    repository matplotlib
+    branch unit_support
+end match
 
 match /branches/(py3k)/
     repository matplotlib
     branch py3k
 end match
 
+match /trunk/toolkits/(basemap-testing)
+    repository basemap
+    branch testing
+end match
 
 # The rest of the branches.
 #
@@ -162,12 +186,37 @@ end match
 
 #match /tags/([0-9]+[^/]+)/
 #  repository matplotlib
-#  branch svntags/\1
+#  branch svntags/\`
 #end match
 
-match /tags/(v[^/]+)/
+#match /tags/(release-0-1)/
+#  repository basemap   
+#  branch svntags/v0_1
+#end match
+
+#match /tags/(basemap_v0_1_1)/
+#  repository basemap
+#  branch svntags/v0_1_1
+#end match
+
+match /tags/(v[0-1]_[0-9][0-9][^/]*)/
   repository matplotlib
   branch svntags/\1
+end match
+
+match /tags/(v0_[1-9][^/]*)/
+  repository basemap
+  branch svntags/\1
+end match
+
+match /tags/(basemap_v0_1_1)/
+  repository basemap
+  branch svntags/v0.1.1
+end match
+
+match /tags/(release-0-1)/
+  repository basemap
+  branch svntags/0.1
 end match
 
 # Rest of the tags are crud; but again remove them only in post-processing

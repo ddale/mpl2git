@@ -17,8 +17,8 @@ help:
 all: clean export postprocess final-cleanup gc
 
 clean:
-	rm -rf matplotlib matplotlib.save log-* revisions-matplotlib \
-	    verify-matplotlib.git crud sample-data sampledoc toolkits
+	rm -rf matplotlib matplotlib.save log-* revisions-matplotlib crud \
+	sample_data sampledoc maintenance mplsizer natgrid basemap py4science
 
 svn2git:
 	git clone git://gitorious.org/svn2git/svn2git.git svn2git
@@ -28,7 +28,7 @@ svn2git/svn-all-fast-export: svn2git
 	cd svn2git && qmake
 	make -C svn2git
 
-export: svn2git/svn-all-fast-export
+export: #svn2git/svn-all-fast-export
 	./svn2git/svn-all-fast-export \
 	  --identity-map authors.map \
 	  --rules matplotlib.rules \
