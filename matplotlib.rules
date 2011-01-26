@@ -134,10 +134,10 @@ end match
 #    branch jdhunter
 #end match
 
-match /branches/(unit_support)/
-    repository matplotlib
-    branch unit_support
-end match
+#match /branches/(unit_support)/
+#    repository matplotlib
+#    branch unit_support
+#end match
 
 match /branches/(py3k)/
     repository matplotlib
