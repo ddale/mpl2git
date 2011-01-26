@@ -131,5 +131,6 @@ run git prune
 # 5) Strip SVN metadata, and make the grafts permanent
 #
 
-run git filter-branch --msg-filter 'head -n-2' -- --all
+# run git filter-branch --msg-filter 'head -n-2' -- --all
+# run git filter-branch --msg-filter 'tail -r | tail -n 2 | tail -r' -- --all
 rm -f info/grafts
