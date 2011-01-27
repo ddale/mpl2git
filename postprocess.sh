@@ -115,7 +115,7 @@ done
 if test -d "$REPOGIT"/refs/heads/svntags; then
     mkdir -p "$REPOGIT"/refs/svn/svntags
     mv "$REPOGIT"/refs/heads/svntags/* "$REPOGIT"/refs/svn/svntags/
-    rmdir "$REPOGIT"/refs/heads/svntags
+    rm -Rf "$REPOGIT"/refs/heads/svntags
 fi
 
 #
