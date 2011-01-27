@@ -36,11 +36,6 @@ match /trunk/matplotlib/
     branch master
 end match
 
-match /branches/jdhunter/
-    repository matplotlib
-    branch jdhunter
-end match
-
 match /trunk/sample_data/
     repository sample_data
     branch master
@@ -134,10 +129,10 @@ end match
 #    branch jdhunter
 #end match
 
-match /branches/unit_support/matplotlib/
-    repository matplotlib
-    branch unit_support
-end match
+#match /branches/unit_support/matplotlib/
+#    repository matplotlib
+#    branch unit_support
+#end match
 
 match /branches/(py3k)/
     repository matplotlib

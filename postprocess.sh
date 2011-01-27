@@ -123,9 +123,18 @@ fi
 #
 MAX_REVISION=`git log --all | sed -n -e '/^    svn path/{s/.*revision=//;p;}'|sort -n|tail -n1`
 
+if test "$REPO" = "matplotlib"; then
+    run git filter-branch --index-filter \
+    'git rm --cached --ignore-unmatch release/osx/matplotlib-0.98.5.tar.gz' \
+    -- 750059aa09340^..
+    rm -Rf refs/original
+    rm -Rf logs
+fi
+
 run git reflog expire --expire=0 --all
 run git prune
-
+git repack -f -a -d --depth=250 --window=250
+git gc --prune=0
 
 #
 # 5) Strip SVN metadata, and make the grafts permanent
