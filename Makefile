@@ -18,7 +18,7 @@ all: clean export postprocess final-cleanup gc
 
 clean:
 	rm -rf matplotlib matplotlib.save log-* revisions-matplotlib crud \
-	sample_data sampledoc maintenance mplsizer natgrid basemap py4science
+	sample_data* sampledoc* maintenance mplsizer* natgrid* basemap* py4science*
 
 svn2git:
 	git clone git://gitorious.org/svn2git/svn2git.git svn2git
@@ -38,6 +38,12 @@ export: #svn2git/svn-all-fast-export
 	2>&1 | tee log-matplotlib-export
 	rm -rf matplotlib.save
 	cp -a matplotlib matplotlib.save
+	cp -a basemap basemap.save
+	cp -a mplsizer mplsizer.save
+	cp -a natgrid natgrid.save
+	cp -a py4science py4science.save
+	cp -a sample_data sample_data.save
+	cp -a sampledoc sampledoc.save
 
 verify-matplotlib.git:
 	./tree-checksum.py --all-git matplotlib.save | tee $@
