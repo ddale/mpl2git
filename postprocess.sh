@@ -133,8 +133,8 @@ fi
 
 run git reflog expire --expire=0 --all
 run git prune
-git repack -f -a -d --depth=250 --window=250
-git gc --prune=0
+run git repack -f -a -d --depth=250 --window=250
+run git gc --prune=0
 
 #
 # 5) Strip SVN metadata, and make the grafts permanent
