@@ -126,7 +126,7 @@ MAX_REVISION=`git log --all | sed -n -e '/^    svn path/{s/.*revision=//;p;}'|so
 if test "$REPO" = "matplotlib"; then
     run git filter-branch --index-filter \
     'git rm --cached --ignore-unmatch release/osx/matplotlib-0.98.5.tar.gz' \
-    -- `git for-each-ref --format="750059aa09340^..%(refname)"`
+    -- `git for-each-ref --format="187e0d98b5f7285280f74ddb^..%(refname)"`
     rm -Rf refs/original
     rm -Rf logs
 fi

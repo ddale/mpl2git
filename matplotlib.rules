@@ -199,10 +199,10 @@ match /tags/(v0_9[0-9][^/]*)/
   branch svntags/\1
 end match
 
-#match /tags/(v0_[0-8][0-9][^/]*)/matplotlib/
-#  repository matplotlib
-#  branch svntags/\1
-#end match
+match /tags/(v0_[0-8][0-9][^/]*)/
+  repository crud
+  branch svntags/\1
+end match
 
 match /tags/(v0_[1-9][^/]*)/
   repository basemap
